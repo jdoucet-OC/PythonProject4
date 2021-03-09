@@ -22,7 +22,9 @@ for pp in players:
 # Tournament
 tournament = classes.Tournament("LEC", "Berlin", "21/03/2021",
                                 "Bullet", "LEC en bullet à berlin, 2021")
+tournament.players = players
 
+# Round1
 # Système suisse
 sortedlist = sorted(players, key=lambda elosort: elosort.elo)
 middle = len(sortedlist)//2
@@ -30,10 +32,36 @@ lowerhalf = sortedlist[:middle]
 upperHalf = sortedlist[middle:]
 
 tour1 = []
-for i in range(0, middle):
-    tour1.append(([lowerhalf[i], 'TBD'], [upperHalf[i], 'TBD']))
+for ii in range(0, middle):
+    tour1.append(([lowerhalf[ii], 'TBD'], [upperHalf[ii], 'TBD']))
 
 Round1 = classes.Round("Round 1", tour1)
 
+# j'entre les resultats, deux nuls, une victoire une défaite
+results = ([1, 0], [0.5, 0.5], [0.5, 0.5], [0, 1])
+# entrée des resultats du round1 en enregistré dans tournoi
+for ii in range(0, middle):
+    Round1.matches[ii][0][1] = results[ii][0]
+    Round1.matches[ii][1][1] = results[ii][1]
 
-# entrée des resultats du round1
+tournament.tournees.append(Round1)
+# Round2
+# Système suisse 2 : avec points
+# comparer si le tuple existe dans la liste des tournées du tournoi
+scoreboard = tournament.gen_sorted_scoreboard()
+
+tour2 = []
+for ii in range(0, 8, 2):
+    tour2.append(([scoreboard[ii][0], 'TBD'], [scoreboard[ii+1][0], 'TBD']))
+
+Round2 = classes.Round("Round 2", tour2)
+
+results = ([0, 1], [0, 1], [0.5, 0.5], [1, 0])
+
+for ii in range(0, middle):
+    Round2.matches[ii][0][1] = results[ii][0]
+    Round2.matches[ii][1][1] = results[ii][1]
+
+tournament.tournees.append(Round2)
+
+print(tournament.gen_sorted_scoreboard())
