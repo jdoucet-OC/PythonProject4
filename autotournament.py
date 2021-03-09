@@ -26,29 +26,20 @@ tournament.players = players
 
 # Round1
 # Système suisse
-sortedlist = sorted(players, key=lambda elosort: elosort.elo)
-middle = len(sortedlist)//2
-lowerhalf = sortedlist[:middle]
-upperHalf = sortedlist[middle:]
-
-tour1 = []
-for ii in range(0, middle):
-    tour1.append(([lowerhalf[ii], 'TBD'], [upperHalf[ii], 'TBD']))
+# sort by elo
+tour1 = tournament.sort_by_elo()
 
 Round1 = classes.Round("Round 1", tour1)
 
 # j'entre les resultats, deux nuls, une victoire une défaite
 results = ([1, 0], [0.5, 0.5], [0.5, 0.5], [0, 1])
 # entrée des resultats du round1 en enregistré dans tournoi
-for ii in range(0, middle):
-    Round1.matches[ii][0][1] = results[ii][0]
-    Round1.matches[ii][1][1] = results[ii][1]
-
+Round1.enter_scores(results)
 tournament.tournees.append(Round1)
 # Round2
 # Système suisse 2 : avec points
 # comparer si le tuple existe dans la liste des tournées du tournoi
-scoreboard = tournament.gen_sorted_scoreboard()
+scoreboard = tournament.sorted_scoreboard()
 
 tour2 = []
 for ii in range(0, 8, 2):
@@ -58,10 +49,10 @@ Round2 = classes.Round("Round 2", tour2)
 
 results = ([0, 1], [0, 1], [0.5, 0.5], [1, 0])
 
-for ii in range(0, middle):
+for ii in range(0, 4):
     Round2.matches[ii][0][1] = results[ii][0]
     Round2.matches[ii][1][1] = results[ii][1]
 
 tournament.tournees.append(Round2)
-
-print(tournament.gen_sorted_scoreboard())
+#repeat
+print(tournament.sorted_scoreboard())

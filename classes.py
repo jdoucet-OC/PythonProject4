@@ -22,8 +22,7 @@ class Tournament:
         self.timeType = timetype
         self.Description = desc
 
-    def gen_sorted_scoreboard(self):
-        # sortedscore = sorted(scores, key=lambda score: score[1], reverse=True)
+    def sorted_scoreboard(self):
         scoreboard = []
         for player in self.players:
             pscore = [player, 0]
@@ -37,6 +36,15 @@ class Tournament:
         sortedscoreboard = sorted(scoreboard, key=lambda score: score[1], reverse=True)
         return sortedscoreboard
 
+    def sort_by_elo(self):
+        sortedlist = sorted(self.players, key=lambda elosort: elosort.elo)
+        middle = len(sortedlist) // 2
+        lowerhalf = sortedlist[:middle]
+        upperhalf = sortedlist[middle:]
+        tour1 = []
+        for ii in range(0, middle):
+            tour1.append(([lowerhalf[ii], 'TBD'], [upperhalf[ii], 'TBD']))
+        return tour1
 
 
 class Round:
@@ -46,6 +54,11 @@ class Round:
         self.startTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         self.endTime = ''
 
-    def enter_scores(self, scores):
-        pass
+    def enter_scores(self, results):
+        for ii in range(0, 4):
+            self.matches[ii][0][1] = results[ii][0]
+            self.matches[ii][1][1] = results[ii][1]
+        self.endTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+
 
