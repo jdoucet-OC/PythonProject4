@@ -1,5 +1,6 @@
 import classes
 import dbmanage
+import time
 # players = []
 # specs = 'CEC', 'Berlin', '18/03/2021', 'Bullet', 'EUW WIN'
 # newTournament = classes.Tournament(specs)
@@ -33,13 +34,14 @@ Round1 = classes.Round("Round 1", tour1)
 
 # j'entre les resultats, deux nuls, une victoire une défaite
 results = ([1, 0], [0.5, 0.5], [0.5, 0.5], [0, 1])
+
 # entrée des resultats du round1 en enregistré dans tournoi
 Round1.enter_scores(results)
 tournament.tournees.append(Round1)
 # Round2
 # Système suisse 2 : avec points
 # comparer si le tuple existe dans la liste des tournées du tournoi
-scoreboard = tournament.sorted_scoreboard()
+scoreboard = tournament.sort_by_score()
 
 tour2 = []
 for ii in range(0, 8, 2):
@@ -49,10 +51,9 @@ Round2 = classes.Round("Round 2", tour2)
 
 results = ([0, 1], [0, 1], [0.5, 0.5], [1, 0])
 
-for ii in range(0, 4):
-    Round2.matches[ii][0][1] = results[ii][0]
-    Round2.matches[ii][1][1] = results[ii][1]
-
+Round2.enter_scores(results)
 tournament.tournees.append(Round2)
+
 #repeat
-print(tournament.sorted_scoreboard())
+print(Round1.startTime, Round1.endTime)
+print(Round2.startTime, Round2.endTime)
