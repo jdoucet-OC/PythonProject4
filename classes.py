@@ -39,13 +39,13 @@ class Tournament:
 
     def sort_by_elo(self):
         sortedlist = sorted(self.players, key=lambda elosort: elosort.elo)
-        middle = len(sortedlist) // 2
+        """middle = len(sortedlist) // 2
         lowerhalf = sortedlist[:middle]
         upperhalf = sortedlist[middle:]
         tour1 = []
         for ii in range(0, middle):
-            tour1.append(([lowerhalf[ii], 'TBD'], [upperhalf[ii], 'TBD']))
-        return tour1
+            tour1.append(([lowerhalf[ii], 'TBD'], [upperhalf[ii], 'TBD']))"""
+        return sortedlist
 
 
 class Round:

@@ -31,8 +31,39 @@ class Views:
 
     @staticmethod
     def show_pname(players):
+        ii = 1
+        print("\n\nToday's players are :\n")
         for player in players:
-            print(player.lastName)
+            lname = player.lastName
+            fname = player.firstName
+            elo = player.elo
+            fstring = f"Player {ii} : {fname} {lname} - Elo = {elo}"
+            print(fstring)
+            ii += 1
+        input("\nPress any key to create first Round...")
+
+    @staticmethod
+    def show_elo_match(matches):
+        for match in matches:
+            player1 = match[0][0].lastName
+            player2 = match[1][0].lastName
+            elo1 = match[0][0].elo
+            elo2 = match[1][0].elo
+            fstring = f"{player1}({elo1}) vs {player2}({elo2})"
+            print(fstring)
+        input("Press any key to enter results...")
+
+    @staticmethod
+    def enter_results(matches):
+        results = []
+        for match in matches:
+            player1 = match[0][0].lastName
+            player2 = match[1][0].lastName
+            fstring = f"Winner : [A] {player1} or [B] {player2}" \
+                      f"\nDraw : [C]\n"
+            results.append(input(fstring).lower())
+        print(results)
+        return results
 
     @staticmethod
     def resume_tournament():

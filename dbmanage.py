@@ -36,8 +36,8 @@ class DbManager:
     def return_demo(self):
         playerlist = []
         for player in self.demoPlayerTable.all():
-            lname = player['lname']
-            fname = player['fname']
+            lname = player['lname'].capitalize()
+            fname = player['fname'].capitalize()
             bdate = player['bdate']
             genre = player['genre']
             elo = player['elo']
