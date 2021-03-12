@@ -54,6 +54,6 @@ results = ([0, 1], [0, 1], [0.5, 0.5], [1, 0])
 Round2.enter_scores(results)
 tournament.tournees.append(Round2)
 
-#repeat
+# repeat
 print(Round1.startTime, Round1.endTime)
 print(Round2.startTime, Round2.endTime)
