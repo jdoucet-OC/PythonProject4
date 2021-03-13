@@ -39,12 +39,6 @@ class Tournament:
 
     def sort_by_elo(self):
         sortedlist = sorted(self.players, key=lambda elosort: elosort.elo)
-        """middle = len(sortedlist) // 2
-        lowerhalf = sortedlist[:middle]
-        upperhalf = sortedlist[middle:]
-        tour1 = []
-        for ii in range(0, middle):
-            tour1.append(([lowerhalf[ii], 'TBD'], [upperhalf[ii], 'TBD']))"""
         return sortedlist
 
 
@@ -56,9 +50,18 @@ class Round:
         self.endTime = ''
 
     def enter_scores(self, results):
-        for ii in range(0, 4):
-            self.matches[ii][0][1] = results[ii][0]
-            self.matches[ii][1][1] = results[ii][1]
+        ii = 0
+        for result in results:
+            if result == "a":
+                self.matches[ii][0][1] = 1
+                self.matches[ii][1][1] = 0
+            elif result == "b":
+                self.matches[ii][0][1] = 0
+                self.matches[ii][1][1] = 1
+            else:
+                self.matches[ii][0][1] = 0.5
+                self.matches[ii][1][1] = 0.5
+            ii += 1
         self.endTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     def tbd_match(self):

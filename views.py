@@ -40,7 +40,7 @@ class Views:
             fstring = f"Player {ii} : {fname} {lname} - Elo = {elo}"
             print(fstring)
             ii += 1
-        input("\nPress any key to create first Round...")
+        input("\nPress any key to start first Round...\n")
 
     @staticmethod
     def show_elo_match(matches):
@@ -49,9 +49,12 @@ class Views:
             player2 = match[1][0].lastName
             elo1 = match[0][0].elo
             elo2 = match[1][0].elo
-            fstring = f"{player1}({elo1}) vs {player2}({elo2})"
+            score1 = match[0][1]
+            score2 = match[1][1]
+            fstring = f"{player1}({elo1}) [{score1}] vs" \
+                      f" [{score2}] {player2}({elo2})"
             print(fstring)
-        input("Press any key to enter results...")
+        input("\nPress any key to enter results...\n")
 
     @staticmethod
     def enter_results(matches):
@@ -62,8 +65,26 @@ class Views:
             fstring = f"Winner : [A] {player1} or [B] {player2}" \
                       f"\nDraw : [C]\n"
             results.append(input(fstring).lower())
-        print(results)
         return results
+
+    @staticmethod
+    def show_results(matches):
+        ii = 1
+        for match in matches:
+            player1 = match[0][0].lastName
+            player2 = match[1][0].lastName
+            score1 = match[0][1]
+            score2 = match[1][1]
+            fstring = f"Match {ii}\n{player1} {score1} :" \
+                      f" {score2} {player2}"
+            print(fstring)
+            ii += 1
+        input("Press any key to start next Round...\n")
+
+    def tournament_end_view(self):
+        print("This is the end!")
+        input("Press any Key to go to main menu...")
+        self.menu()
 
     @staticmethod
     def resume_tournament():
