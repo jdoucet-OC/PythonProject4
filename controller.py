@@ -40,13 +40,38 @@ class Controller:
         upperhalf = tournament.players[middle:]
         tour1 = []
         for ii in range(0, middle):
-            tour1.append(([lowerhalf[ii], 'TBD'], [upperhalf[ii], 'TBD']))
-        self.view.show_elo_match(tour1)
-        results = self.view.enter_results(tour1)
+            tour1.append(([lowerhalf[ii], 0], [upperhalf[ii], 0]))
+        round1 = classes.Round('Round1', tour1)
+        tournament.tournees.append(round1)
+        self.view.show_elo_match(round1.matches)
+        results = self.view.enter_results(round1.matches)
+        self.process_results(tournament, results)
+
+    def next_rounds(self, tournament):
+        index = len(tournament.tournees)
+        fstring = f"Round{index}"
+        sortedscorelist = tournament.sort_by_score()
+        nexttour = []
+        for ii in range(0, len(sortedscorelist), 2):
+            nexttour.append((sortedscorelist[ii], sortedscorelist[ii+1]))
+        nextround = classes.Round(fstring, nexttour)
+        tournament.tournees.append(nextround)
+        self.view.show_elo_match(nextround.matches)
+        results = self.view.enter_results(nextround.matches)
         self.process_results(tournament, results)
 
     def process_results(self, tournament, results):
-        pass
+        index = len(tournament.tournees)-1
+        theround = tournament.tournees[index]
+        theround.enter_scores(results)
+        self.view.show_results(theround.matches)
+        if tournament.turns == len(tournament.tournees):
+            self.end_tournament()
+        else:
+            self.next_rounds(tournament)
+
+    def end_tournament(self):
+        self.view.tournament_end_view()
 
     def pick_players(self, tournament):
         pass
