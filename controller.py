@@ -33,6 +33,7 @@ class Controller:
         """
         name, place, date, timetype, desc = self.view.new_tournament()
         tournament = classes.Tournament(name, place, date, timetype, desc)
+        self.tournamentDb.init_tournament(tournament)
         players = self.view.add_players()
         if players == "a":
             self.demo_players(tournament)
@@ -62,6 +63,7 @@ class Controller:
             tour1.append(([lowerhalf[ii], 0], [upperhalf[ii], 0]))
         round1 = classes.Round('Round1', tour1)
         tournament.tournees.append(round1)
+        self.tournamentDb.insert_round(tournament)
         self.view.show_elo_match(round1.matches)
         results = self.view.enter_results(round1.matches)
         self.process_results(tournament, results)
