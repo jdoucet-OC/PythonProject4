@@ -1,6 +1,7 @@
 import controller
 import views
 
+
 def main():
     view = views.Views()
     start = controller.Controller(view)

@@ -4,7 +4,7 @@ import time
 # players = []
 # specs = 'CEC', 'Berlin', '18/03/2021', 'Bullet', 'EUW WIN'
 # newTournament = classes.Tournament(specs)
-dbmanager = dbmanage.DbManager()
+dbmanager = dbmanage.PlayerDbManager()
 # players
 player1 = classes.Player("James", "McGill", "21/12/1976", "M", 1950)
 player2 = classes.Player("James", "McGales", "21/12/1976", "M", 1873)
@@ -18,7 +18,7 @@ player8 = classes.Player("Nono", "Riana", "14/08/2000", "F", 2108)
 players = [player1, player2, player3, player4,
            player5, player6, player7, player8]
 for pp in players:
-    dbmanager.insert_to_db(pp)
+    dbmanager.insert_player(pp)
 
 # Tournament
 tournament = classes.Tournament("LEC", "Berlin", "21/03/2021",

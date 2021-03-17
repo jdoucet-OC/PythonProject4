@@ -2,7 +2,16 @@ from datetime import datetime
 
 
 class Player:
+    """"""
+
     def __init__(self, fname, lname, bday, genre, elo):
+        """
+        :param fname:
+        :param lname:
+        :param bday:
+        :param genre:
+        :param elo:
+        """
         self.firstName = fname
         self.lastName = lname
         self.bDay = bday
@@ -11,6 +20,7 @@ class Player:
 
 
 class Tournament:
+    """"""
     def __init__(self, name, place, date,
                  timetype, desc):
         self.name = name
@@ -20,9 +30,12 @@ class Tournament:
         self.tournees = []
         self.players = []
         self.timeType = timetype
-        self.Description = desc
+        self.description = desc
 
     def sort_by_score(self):
+        """
+        :return:
+        """
         scoreboard = []
         for player in self.players:
             pscore = [player, 0]
@@ -38,18 +51,30 @@ class Tournament:
         return sortedscoreboard
 
     def sort_by_elo(self):
+        """
+        :return:
+        """
         sortedlist = sorted(self.players, key=lambda elosort: elosort.elo)
         return sortedlist
 
 
 class Round:
+    """"""
     def __init__(self, name, matcheslist):
+        """
+        :param name:
+        :param matcheslist:
+        """
         self.name = name
         self.matches = matcheslist
         self.startTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         self.endTime = ''
 
     def enter_scores(self, results):
+        """
+        :param results:
+        :return:
+        """
         ii = 0
         for result in results:
             if result == "a":
@@ -64,6 +89,4 @@ class Round:
             ii += 1
         self.endTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    def tbd_match(self):
-        pass
 

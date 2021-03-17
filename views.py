@@ -1,19 +1,26 @@
 class Views:
+    """"""
     def __init__(self):
+        """"""
         pass
 
     @staticmethod
     def menu():
+        """
+        :return:
+        """
         print('Chess Tournament Menu :\n')
         choice = input('A: New Tournament\n'
                        'B: Resume Tournament\n'
                        'C: Edit Players\n'
                        'D: Reports\n').lower()
-
         return choice
 
     @staticmethod
     def new_tournament():
+        """
+        :return:
+        """
         print("\n\nNew tournament, enter tournament attributes")
         name = input("Tournament name : ")
         place = input("City : ")
@@ -24,6 +31,9 @@ class Views:
 
     @staticmethod
     def add_players():
+        """
+        :return:
+        """
         print("\n\nAdd players")
         players = input("A: Add 8 Pre-selected Player ( demo )\n"
                         "B: Pick 8 Players\n").lower()
@@ -31,6 +41,10 @@ class Views:
 
     @staticmethod
     def show_pname(players):
+        """
+        :param players:
+        :return:
+        """
         ii = 1
         print("\n\nToday's players are :\n")
         for player in players:
@@ -44,6 +58,10 @@ class Views:
 
     @staticmethod
     def show_elo_match(matches):
+        """
+        :param matches:
+        :return:
+        """
         for match in matches:
             player1 = match[0][0].lastName
             player2 = match[1][0].lastName
@@ -58,6 +76,10 @@ class Views:
 
     @staticmethod
     def enter_results(matches):
+        """
+        :param matches:
+        :return:
+        """
         results = []
         for match in matches:
             player1 = match[0][0].lastName
@@ -69,6 +91,10 @@ class Views:
 
     @staticmethod
     def show_results(matches):
+        """
+        :param matches:
+        :return:
+        """
         ii = 1
         for match in matches:
             player1 = match[0][0].lastName
@@ -82,6 +108,9 @@ class Views:
         input("Press any key to start next Round...\n")
 
     def tournament_end_view(self):
+        """
+        :return:
+        """
         print("This is the end!")
         input("Press any Key to go to main menu...")
         self.menu()
@@ -92,13 +121,41 @@ class Views:
         pass
 
     @staticmethod
-    def edit_players():
-        print("Edit players :")
-        pass
+    def show_players_edit(players):
+        ii = 1
+        print("\n\nPick which player you want to edit :\n")
+        for player in players:
+            lname = player.lastName
+            fname = player.firstName
+            elo = player.elo
+            fstring = f"[{ii}] : {fname} {lname} - Elo = {elo}"
+            print(fstring)
+            ii += 1
+        print('[A] : Return to Menu\n')
+        return input().lower()
 
     @staticmethod
-    def reports():
-        print("Reports :")
-        pass
+    def edit_elo(player):
+        lname = player.lastName
+        fname = player.firstName
+        elo = player.elo
+        fstring = f"{fname} {lname} - Elo = {elo}" \
+                  f"\nChoose new elo : "
+        elo = input(fstring)
+        return elo
 
+    @staticmethod
+    def reports_menu():
+        liste = input(
+            'List all players :\n'
+            '  [A] : Alphabetical sort\n'
+            '  [B] : Elo sort\n\n'
+            'List all players in one tournament :\n'
+            '  [C] : Alphabetical sort\n'
+            '  [D] : Elo sort\n\n'
+            '[E] List all tournaments\n'
+            '[F] List all rounds in one tournament\n'
+            '[G] List all matches in one tournament\n'
+        ).lower()
+        return liste
 
