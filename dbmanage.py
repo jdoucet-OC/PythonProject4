@@ -119,25 +119,49 @@ class TournamentDbMananger:
         else:
             print('not inserted')
 
-    def insert_round(self, tournament, index):
+    def get_tournament_id(self, tournament):
         """"""
+        cond1 = self.query.name == tournament.name.lower()
+        cond2 = self.query.place == tournament.place.lower()
+        cond3 = self.query.date == tournament.date
+
+        search1 = self.tournament.search(cond1 & cond2 & cond3)
+        return search1[0]['id']
+
+    def insert_round(self, tournament):
+        """"""
+        index = len(tournament.tournees)
         theround = tournament.tournees[index]
+        thetournament = self.get_tournament_id(tournament)
         ser_round = {
-            'tournament': None,
+            'tournament': thetournament,
             'name': theround.name,
             'count': index
         }
+        cond1 = self.query.tournament == ''
+        cond2 = self.query.count == index
+        search1 = self.rounds.search(cond1 & cond2)
+        if not search1:
+            self.round.insert(ser_round)
+            print('inserted')
+        else:
+            print('not inserted')
         self.rounds.insert(ser_round)
 
-    def init_match(self, tournament, index):
-
+    def init_match(self, tournament, p1, p2):
+        """"""
+        index = len(tournament.tournees)
+        theround = tournament.tournees[index]
+        index2 = len(theround.matches)
+        thematch = theround.matches[index2]
+        thetournament = self.get_tournament_id(tournament)
         ser_match = {
-            'tournament': None,
-            'round': None,
-            'count': None,
-            'player1': None,
+            'tournament': thetournament,
+            'round': theround,
+            'count': thematch,
+            'player1': p1.name,
             'result1': 'TBD',
-            'player2': None,
+            'player2': p2.name,
             'result2:': 'TBD'
         }
         self.rounds.insert(ser_match)
