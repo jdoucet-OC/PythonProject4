@@ -1,3 +1,6 @@
+from os import system, name
+
+
 class Views:
     """"""
     def __init__(self):
@@ -13,7 +16,8 @@ class Views:
         choice = input('A: New Tournament\n'
                        'B: Resume Tournament\n'
                        'C: Edit Players\n'
-                       'D: Reports\n').lower()
+                       'D: Reports\n'
+                       'Q: Quit\n').lower()
         return choice
 
     @staticmethod
@@ -22,12 +26,12 @@ class Views:
         :return:
         """
         print("\n\nNew tournament, enter tournament attributes")
-        name = input("Tournament name : ")
-        place = input("City : ")
-        date = input("Date : ")
+        tname = input("Tournament name : ")
+        tplace = input("City : ")
+        tdate = input("Date : ")
         timetype = input("TimeType : ")
         desc = input("Description : ")
-        return name, place, date, timetype, desc
+        return tname, tplace, tdate, timetype, desc
 
     @staticmethod
     def add_players():
@@ -158,4 +162,3 @@ class Views:
             '[G] List all matches in one tournament\n'
         ).lower()
         return liste
-

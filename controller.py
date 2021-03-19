@@ -26,6 +26,8 @@ class Controller:
             self.edit_players()
         if choice == "d":
             self.start_reports()
+        if choice == "q":
+            quit()
 
     def new_tt(self):
         """
@@ -63,7 +65,17 @@ class Controller:
             tour1.append(([lowerhalf[ii], 0], [upperhalf[ii], 0]))
         round1 = classes.Round('Round1', tour1)
         tournament.tournees.append(round1)
-        self.tournamentDb.insert_round(tournament)
+
+        # insertion du round 1 et du match 1 sans resultat dans la DB
+        self.tournamentDb.insert_round(tournament, 0)
+        indexm = 0
+        for match in round1.matches:
+            p1 = match[0][0]
+            p2 = match[1][0]
+            self.tournamentDb.init_match(tournament, 0, indexm, p1, p2)
+            indexm += 1
+
+        # Préparation du match
         self.view.show_elo_match(round1.matches)
         results = self.view.enter_results(round1.matches)
         self.process_results(tournament, results)
@@ -73,14 +85,27 @@ class Controller:
         :param tournament:
         :return:
         """
-        index = len(tournament.tournees)
-        fstring = f"Round{index}"
+        roundnumber = len(tournament.tournees)+1
+        fstring = f"Round{roundnumber}"
         sortedscorelist = tournament.sort_by_score()
         nexttour = []
         for ii in range(0, len(sortedscorelist), 2):
             nexttour.append((sortedscorelist[ii], sortedscorelist[ii+1]))
         nextround = classes.Round(fstring, nexttour)
         tournament.tournees.append(nextround)
+
+        # insertion du round et du match sans resultat dans la DB
+        indexr = roundnumber-1
+        self.tournamentDb.insert_round(tournament, indexr)
+        indexm = 0
+        for match in nextround.matches:
+            p1 = match[0][0]
+            p2 = match[1][0]
+            self.tournamentDb.init_match(tournament, indexr, indexm, p1, p2)
+            indexm += 1
+
+        # Préparation du match
+        print(indexr, indexm)
         self.view.show_elo_match(nextround.matches)
         results = self.view.enter_results(nextround.matches)
         self.process_results(tournament, results)
@@ -95,6 +120,8 @@ class Controller:
         theround = tournament.tournees[index]
         theround.enter_scores(results)
         self.view.show_results(theround.matches)
+        # insertion des resultats du match dans la DB
+        self.tournamentDb.enter_score(tournament)
         if tournament.turns == len(tournament.tournees):
             self.end_tournament()
         else:
@@ -124,6 +151,7 @@ class Controller:
 
     def start_reports(self):
         choice = self.view.reports_menu()
+        return choice
 
     def resumt_tt(self):
         pass
