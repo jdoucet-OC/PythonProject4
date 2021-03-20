@@ -1,6 +1,3 @@
-from os import system, name
-
-
 class Views:
     """"""
     def __init__(self):
@@ -150,7 +147,7 @@ class Views:
 
     @staticmethod
     def reports_menu():
-        liste = input(
+        choice = input(
             'List all players :\n'
             '  [A] : Alphabetical sort\n'
             '  [B] : Elo sort\n\n'
@@ -161,4 +158,4 @@ class Views:
             '[F] List all rounds in one tournament\n'
             '[G] List all matches in one tournament\n'
         ).lower()
-        return liste
+        return choice

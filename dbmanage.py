@@ -60,7 +60,7 @@ class PlayerDbManager:
             bdate = player['bdate']
             genre = player['genre']
             elo = player['elo']
-            playerlist.append(classes.Player(lname, fname, bdate,
+            playerlist.append(classes.Player(fname, lname, bdate,
                                              genre, elo))
         return playerlist
 
@@ -75,7 +75,7 @@ class PlayerDbManager:
             bdate = player['bdate']
             genre = player['genre']
             elo = player['elo']
-            playerlist.append(classes.Player(lname, fname, bdate,
+            playerlist.append(classes.Player(fname, lname, bdate,
                                              genre, elo))
         return playerlist
 
@@ -165,3 +165,39 @@ class TournamentDbMananger:
         """"""
         pass
 
+    def return_player_tournament(self, tourid):
+        search1 = self.query.tournament == tourid
+        search2 = self.query.round == 0
+        playerlist = []
+        for item in self.matches.search(search1 & search2):
+            playerlist.append(item['player1'])
+            playerlist.append(item['player2'])
+        return playerlist
+
+    def return_tournaments(self):
+        tourlist = []
+        for tournament in self.tournament.all():
+            name = tournament['name'].capitalize()
+            place = tournament['place'].capitalize()
+            date = tournament['date']
+            turns = tournament['turns']
+            timetype = tournament['timeType']
+            tourlist.append((name, place, date, turns, timetype))
+        return tourlist
+
+    def return_rounds(self, tourid):
+        search1 = self.query.id == tourid
+        roundlist = []
+        for rounds in self.rounds.search(search1):
+            round_id = rounds['id']
+            tournament_id = rounds['tournament']
+            name = rounds['name'].capitalize()
+            roundlist.append((round_id, tournament_id, name))
+        return roundlist
+
+    def return_all_matches(self, tourid):
+        search1 = self.query.tournament == tourid
+        matchlist = []
+        for item in self.matches.search(search1):
+            matchlist.append(item)
+        return matchlist
