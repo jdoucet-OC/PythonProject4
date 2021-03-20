@@ -113,7 +113,10 @@ class TournamentDbMananger:
             print('not inserted')
 
     def get_tournament_id(self, tournament):
-        """"""
+        """
+        :param tournament:
+        :return:
+        """
         cond1 = self.query.name == tournament.name.lower()
         cond2 = self.query.place == tournament.place.lower()
         cond3 = self.query.date == tournament.date
@@ -122,7 +125,11 @@ class TournamentDbMananger:
         return search1[0]['id']
 
     def insert_round(self, tournament, index):
-        """"""
+        """
+        :param tournament:
+        :param index:
+        :return:
+        """
 
         theround = tournament.tournees[index]
         thetournament = self.get_tournament_id(tournament)
@@ -140,7 +147,14 @@ class TournamentDbMananger:
             print('round déjà existant')
 
     def init_match(self, tournament, indexr, indexm, p1, p2):
-        """"""
+        """
+        :param tournament:
+        :param indexr:
+        :param indexm:
+        :param p1:
+        :param p2:
+        :return:
+        """
 
         thetournament = self.get_tournament_id(tournament)
         ser_match = {
@@ -159,6 +173,10 @@ class TournamentDbMananger:
         pass
 
     def return_player_tournament(self, tourid):
+        """
+        :param tourid:
+        :return:
+        """
         search1 = self.query.tournament == tourid
         search2 = self.query.round == 0
         playerlist = []
@@ -168,6 +186,9 @@ class TournamentDbMananger:
         return playerlist
 
     def return_tournaments(self):
+        """
+        :return:
+        """
         tourlist = []
         for tournament in self.tournament.all():
             name = tournament['name'].capitalize()
@@ -179,6 +200,10 @@ class TournamentDbMananger:
         return tourlist
 
     def return_rounds(self, tourid):
+        """
+        :param tourid:
+        :return:
+        """
         search1 = self.query.id == tourid
         roundlist = []
         for rounds in self.rounds.search(search1):
@@ -189,6 +214,10 @@ class TournamentDbMananger:
         return roundlist
 
     def return_all_matches(self, tourid):
+        """
+        :param tourid:
+        :return:
+        """
         search1 = self.query.tournament == tourid
         matchlist = []
         for item in self.matches.search(search1):
