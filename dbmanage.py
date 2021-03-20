@@ -35,19 +35,12 @@ class PlayerDbManager:
         else:
             print('not inserted')
 
-    def modify_elo(self, player):
-        """
-        :param player:
-        :return:
-        """
-        self.playersTable.search(self.query.lname == player.lastName.lower())
-
-    def reports(self, player):
-        """
-        :param player:
-        :return:
-        """
-        self.playersTable.search(self.query.lname == player.lastName.lower())
+    def modify_elo(self, player, elo):
+        """"""
+        cond1 = (self.query.lname == player.lastName.lower())
+        cond2 = (self.query.fname == player.firstName.lower())
+        cond3 = (self.query.bdate == player.bDay)
+        self.playersTable.update({'elo': elo}, cond1 & cond2 & cond3)
 
     def return_demo(self):
         """

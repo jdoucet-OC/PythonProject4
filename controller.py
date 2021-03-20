@@ -146,6 +146,7 @@ class Controller:
             self.run()
         player = (players[int(index)-1])
         new_elo = self.view.edit_elo(player)
+        self.playerDb.modify_elo(player, new_elo)
         print(new_elo)
         self.edit_players()
 
