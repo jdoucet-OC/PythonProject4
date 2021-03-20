@@ -140,6 +140,9 @@ class Controller:
         pass
 
     def edit_players(self):
+        """
+        :return:
+        """
         players = self.playerDb.return_players()
         index = self.view.show_players_edit(players)
         if index == 'a':
@@ -151,6 +154,9 @@ class Controller:
         self.edit_players()
 
     def start_reports(self):
+        """
+        :return:
+        """
         choice = self.view.reports_menu()
         choice_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
         choice_func = [
@@ -168,36 +174,57 @@ class Controller:
                 choice_func[index]()
 
     def all_player_alpha_sort(self):
+        """
+        :return:
+        """
         all_players = self.playerDb.return_players()
         all_players.sort(key=lambda x: x.lastName)
         self.view.show_pname(all_players)
 
     def all_players_elo_sort(self):
+        """
+        :return:
+        """
         all_players = self.playerDb.return_players()
         all_players.sort(key=lambda x: x.elo, reverse=True)
         self.view.show_pname(all_players)
 
     def tournament_alpha_sort(self):
+        """
+        :return:
+        """
         plist = self.tournamentDb.return_player_tournament(0)
         for item in plist:
             print(item)
 
     def tournament_elo_sort(self):
+        """
+        :return:
+        """
         plist = self.tournamentDb.return_player_tournament(0)
         for item in plist:
             print(item)
 
     def all_tournaments(self):
+        """
+        :return:
+        """
         plist = self.tournamentDb.return_tournaments()
         for item in plist:
             print(item)
 
     def list_all_rounds(self):
+        """
+        :return:
+        """
         rlist = self.tournamentDb.return_rounds(0)
         for item in rlist:
             print(item)
 
     def list_all_matches(self):
+        """
+        :return:
+        """
         mlist = self.tournamentDb.return_all_matches(0)
         for item in mlist:
             print(item)

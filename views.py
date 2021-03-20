@@ -118,11 +118,18 @@ class Views:
 
     @staticmethod
     def resume_tournament():
+        """
+        :return:
+        """
         print("Resuming previous tournament...")
         pass
 
     @staticmethod
     def show_players_edit(players):
+        """
+        :param players:
+        :return:
+        """
         ii = 1
         print("\n\nPick which player you want to edit :\n")
         for player in players:
@@ -137,6 +144,10 @@ class Views:
 
     @staticmethod
     def edit_elo(player):
+        """
+        :param player:
+        :return:
+        """
         lname = player.lastName
         fname = player.firstName
         elo = player.elo
@@ -147,6 +158,9 @@ class Views:
 
     @staticmethod
     def reports_menu():
+        """
+        :return:
+        """
         choice = input(
             'List all players :\n'
             '  [A] : Alphabetical sort\n'

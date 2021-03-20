@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>.\autotournament.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <h1>
+            <a href="autotournament.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\autotournament.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="kn">import</span> <span class="nn">classes</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="kn">import</span> <span class="nn">dbmanage</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev-1  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-1">
+                        F401
+                     </span>
+                     'time' imported but unused</li>
+               
+               </ul><tt><i>3</i> <span class="kn">import</span> <span class="nn">time</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> <span class="c1"># players = []</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> <span class="c1"># specs = &#39;CEC&#39;, &#39;Berlin&#39;, &#39;18/03/2021&#39;, &#39;Bullet&#39;, &#39;EUW WIN&#39;</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> <span class="c1"># newTournament = classes.Tournament(specs)</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i> <span class="n">dbmanager</span> <span class="o">=</span> <span class="n">dbmanage</span><span class="o">.</span><span class="n">PlayerDbManager</span><span class="p">()</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i> <span class="c1"># players</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i> <span class="n">player1</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;McGill&quot;</span><span class="p">,</span> <span class="s2">&quot;21/12/1976&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">1950</span><span class="p">)</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i> <span class="n">player2</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">,</span> <span class="s2">&quot;McGales&quot;</span><span class="p">,</span> <span class="s2">&quot;21/12/1976&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">1873</span><span class="p">)</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i> <span class="n">player3</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Jason&quot;</span><span class="p">,</span> <span class="s2">&quot;Doucet&quot;</span><span class="p">,</span> <span class="s2">&quot;12/11/1997&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">1281</span><span class="p">)</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i> <span class="n">player4</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Rémi&quot;</span><span class="p">,</span> <span class="s2">&quot;Laroche&quot;</span><span class="p">,</span> <span class="s2">&quot;09/07/1997&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">1281</span><span class="p">)</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i> <span class="n">player5</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span> <span class="s2">&quot;McGill&quot;</span><span class="p">,</span> <span class="s2">&quot;18/04/1947&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="mi">1603</span><span class="p">)</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i> <span class="n">player6</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Wonderland&quot;</span><span class="p">,</span> <span class="s2">&quot;21/06/1984&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="mi">1551</span><span class="p">)</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i> <span class="n">player7</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Betty&quot;</span><span class="p">,</span> <span class="s2">&quot;Dove&quot;</span><span class="p">,</span> <span class="s2">&quot;28/01/45&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="mi">2117</span><span class="p">)</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> <span class="n">player8</span> <span class="o">=</span> <span class="n">classes</span><span class="o">.</span><span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Nono&quot;</span><span class="p">,</span> <span class="s2">&quot;Riana&quot;</span><span class="p">,</span> <span class="s2">&quot;14/08/2000&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="mi">2108</span><span class="p">)</span></tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i> &nbsp;</tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i> <span class="n">players</span> <span class="o">=</span> <span class="p">[</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">,</span> <span class="n">player3</span><span class="p">,</span> <span class="n">player4</span><span class="p">,</span></tt>
+            </div>
+            <div id="l19"
+               class="code sev- "><tt><i>19</i>            <span class="n">player5</span><span class="p">,</span> <span class="n">player6</span><span class="p">,</span> <span class="n">player7</span><span class="p">,</span> <span class="n">player8</span><span class="p">]</span></tt>
+            </div>
+            <div id="l20"
+               class="code sev- "><tt><i>20</i> <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">players</span><span class="p">:</span></tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i>     <span class="n">dbmanager</span><span class="o">.</span><span class="n">insert_player</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>
